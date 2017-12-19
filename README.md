@@ -45,6 +45,24 @@ The different flavors of base32 alphabets come from different criteria for omitt
 - [Crockford's base32](https://www.crockford.com/wrmg/base32.html) with additional, optional checksum digit
 - [RFC4648](https://tools.ietf.org/html/rfc4648)
 
+## Checksum
+
+From [Crockford's base32](https://www.crockford.com/wrmg/base32.html) 
+
+> An application may append a check symbol to a symbol string. This check symbol can be used to detect wrong-symbol and transposed-symbol errors. This allows for detecting transmission and entry errors early and inexpensively.
+
+> The check symbol encodes the number modulo 37, 37 being the least prime number greater than 32. We introduce 5 additional symbols that are used only for encoding or decoding the check symbol.
+
+>The additional symbols were selected to not be confused with punctuation or with URL formatting.
+
+```console
+====== With checksum digit ======
+
+paywfhpnykj77weppsb22upiuddqac
+evtwfhpnykj77weppsb22upiuddqaq
+wbhwfhpnykj77weppsb22upiuddqaf
+```
+
 ## Conclusion and recommondation
 
 As a compromise between length, readability and case-insensitivity (base64 isn't) I'd go for base32 with the standard RFC4648 alphabet.
