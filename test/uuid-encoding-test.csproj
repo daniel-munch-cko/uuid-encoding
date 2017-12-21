@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RuntimeFrameworkVersion>2.0</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  
+<ItemGroup>
+    <PackageReference Include="Nunit" Version="3.7.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-*" />
+</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\uuid-encoding.csproj" />
+  </ItemGroup>
+</Project>

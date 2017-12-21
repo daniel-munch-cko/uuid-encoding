@@ -1,4 +1,4 @@
-namespace ZBase32Encoder
+namespace uuid_encoding
 {
     using System;
     using System.Collections.Generic;

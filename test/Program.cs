@@ -4,13 +4,13 @@ namespace uuid_encoding
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             var uid = Guid.NewGuid();
             var uidBytes = uid.ToByteArray();
             
             var base32 = Base32.Encode(uidBytes);
-            var zbase32 = ZBase32Encoder.ZBase32Encoder.Encode(uidBytes);
+            var zbase32 = ZBase32Encoder.Encode(uidBytes);
             var base64 = Convert.ToBase64String(uidBytes);
 
             Console.WriteLine($"base16 : {uid:n}");
@@ -20,7 +20,7 @@ namespace uuid_encoding
 
             
             var fromBase32 = new Guid(Base32.Decode(base32));
-            var fromzBase32 = new Guid(ZBase32Encoder.ZBase32Encoder.Decode(zbase32));
+            var fromzBase32 = new Guid(ZBase32Encoder.Decode(zbase32));
             var fromBase64 = new Guid(Convert.FromBase64String(base64));
 
             Console.WriteLine();
