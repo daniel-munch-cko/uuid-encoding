@@ -52,6 +52,6 @@
     "integer": "Managed",
     "lambda": "Plain"
   },
-
-  "combineScripts": true
+  // combineScripts currently breaks CommonJS module loading
+  "combineScripts": false
 }

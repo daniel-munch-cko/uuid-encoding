@@ -1,12 +1,11 @@
 ﻿using System;
+using Bridge;
+using uuid_encoding;
 
-namespace uuid_encoding
+public class Base32Guid
 {
-    public class Base32Guid
+    public static string Create()
     {
-        public static string Create()
-        {
-            return Base32.Encode(Guid.NewGuid().ToByteArray());
-        }
+        return Base32.Encode(Guid.NewGuid().ToByteArray());
     }
 }
