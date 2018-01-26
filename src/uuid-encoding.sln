@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uuid-encoding", "uuid-encod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uuid-encoding.js", "uuid-encoding.js\uuid-encoding.js.csproj", "{5803475D-A38D-4F0F-9A26-67C33AA7A913}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uuid-encoding.AMD", "uuid-encoding.AMD\uuid-encoding.AMD.csproj", "{4965849A-660B-4E5C-AAAE-A2BF113ED8FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{5803475D-A38D-4F0F-9A26-67C33AA7A913}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5803475D-A38D-4F0F-9A26-67C33AA7A913}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5803475D-A38D-4F0F-9A26-67C33AA7A913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4965849A-660B-4E5C-AAAE-A2BF113ED8FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4965849A-660B-4E5C-AAAE-A2BF113ED8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4965849A-660B-4E5C-AAAE-A2BF113ED8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4965849A-660B-4E5C-AAAE-A2BF113ED8FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
