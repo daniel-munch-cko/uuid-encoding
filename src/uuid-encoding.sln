@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uuid-encoding", "uuid-encoding\uuid-encoding.csproj", "{8885757D-7531-47C8-AA01-8E6C6F6777C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uuid-encoding.js", "uuid-encoding.js\uuid-encoding.js.csproj", "{5803475D-A38D-4F0F-9A26-67C33AA7A913}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8885757D-7531-47C8-AA01-8E6C6F6777C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8885757D-7531-47C8-AA01-8E6C6F6777C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8885757D-7531-47C8-AA01-8E6C6F6777C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8885757D-7531-47C8-AA01-8E6C6F6777C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5803475D-A38D-4F0F-9A26-67C33AA7A913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5803475D-A38D-4F0F-9A26-67C33AA7A913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5803475D-A38D-4F0F-9A26-67C33AA7A913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5803475D-A38D-4F0F-9A26-67C33AA7A913}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
