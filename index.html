@@ -1,15 +1,41 @@
-<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>uuid-encoding.js</title>
-    
-    <script src="bridge.js"></script>
-    <script src="bridge.meta.js"></script>
-    <script src="uuid-encoding.js"></script>
-    <script src="uuid-encoding.js.meta.js"></script>
+    <title>uuid-encoding.AMD</title>
+
+    <script src="bridge/bridge.js"></script>
+    <script src="bridge/bridge.console.js"></script>
+    <script src="bridge/bridge.meta.js"></script>
+    <script src="bridge/uuid-encoding.AMD.js"></script>
+    <script src="bridge/uuid-encoding.AMD.meta.js"></script>
 </head>
 <body>
+    <div>
+        <ul id="uuids" />
+    </div>
+    <div>
+        <input type="text" id="uuid_to_decode" /><input id="button" value="Decode" type="button"/>
+    </div>
+    <div id="decoded_uuid"/>
+
+    <script>
+        window.onload = function() {
+            let ul = document.getElementById("uuids");
+
+            for(i = 0; i < 10; i++) {
+                let id = Base32Guid.Create();
+
+                let li = document.createElement("li");
+                li.append(id);
+                ul.appendChild(li);
+            }
+        };
+
+        document.getElementById("button").onclick = function() {
+            let base32uuid = document.getElementById("uuid_to_decode").value;
+            let uuid = Base32Guid.Decode(base32uuid);
+            document.getElementById("decoded_uuid").innerHTML = uuid;
+        };
+    </script>
 </body>
 </html>
