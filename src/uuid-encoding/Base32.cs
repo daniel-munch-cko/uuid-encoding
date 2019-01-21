@@ -82,6 +82,14 @@ namespace uuid_encoding
                     bitsLeft -= 8;
                 }
             }
+
+            // Ramaing bits lead to ambiguity, since different input strings lead to the same 
+            // result when ignoring those bits) 
+            if ((buffer & ((1 << bitsLeft) - 1)) != 0)
+            {
+                throw new DecodingException("Remaining bits: " + bitsLeft);
+            }
+
             // We'll ignore leftover bits for now.
             //
             // if (next != outLength || bitsLeft >= SHIFT) {
