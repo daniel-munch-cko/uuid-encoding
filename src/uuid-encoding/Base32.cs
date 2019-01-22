@@ -83,18 +83,20 @@ namespace uuid_encoding
                 }
             }
 
-            // Ramaing bits lead to ambiguity, since different input strings lead to the same 
-            // result when ignoring those bits) 
-            if ((buffer & ((1 << bitsLeft) - 1)) != 0)
+            int remainingBuffer = buffer & ((1 << bitsLeft) - 1);
+
+            // Remaining non-zero buffer as well as left bits amount being at least the shift size lead to 
+            // ambiguity, since different input strings lead to the same result when simply ignoring those.
+            if (remainingBuffer != 0)
             {
-                throw new DecodingException("Remaining bits: " + bitsLeft);
+               throw new DecodingException("Remaining buffer: " + remainingBuffer);
             }
 
-            // We'll ignore leftover bits for now.
-            //
-            // if (next != outLength || bitsLeft >= SHIFT) {
-            //  throw new DecodingException("Bits left: " + bitsLeft);
-            // }
+            if (next != outLength || bitsLeft >= SHIFT)
+            {
+               throw new DecodingException("Bits left: " + bitsLeft);
+            }
+
             return result;
         }
 
