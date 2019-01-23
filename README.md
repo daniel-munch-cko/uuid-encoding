@@ -71,11 +71,11 @@ As a compromise between length, readability and case-insensitivity (base64 isn't
 
 The method `Encode` is an injective function, that is each byte array results in a unique encoded string. However, it is not a surjective function. In other words, not every string (in the defined alphabet) has a corresponding byte array whose encoding would result this string.
 On the other hand, in the initial implementation, the function `Decode` is defined for any string in the defined alphabet. 
-In the case of the above mentioned strings, this was made possible by ignoring bits that would remain after the decoding and returning basically a byte array that would result a completely different string at encoding (rows 1-5): 
+In the case of the above mentioned strings, this was made possible by ignoring bits that would remain after the decoding and returning basically a byte array that would result a completely different string at encoding. As a result `Decode` is not an injectve function, in other words: multiple strings can result in the same byte array (rows 1-5): 
 
 ### Example:
 
-|   | Input string                  | Guid resulting from the Encoding       | Remaining Bits (amount) | Remaining Buffer (binary) | 
+|   | Input string                  | Guid resulting from the Decoding       | Remaining Bits (amount) | Remaining Buffer (binary) | 
 |:-:|:-----------------------------:|:--------------------------------------:|:-----------------------:|:-------------------------:|
 | 1 | `aaaaaaaaaaaaaaaaaaaaaaaaaa`  | `00000000-0000-0000-0000-000000000000` | 0                       | 0                         |
 | 2 | `aaaaaaaaaaaaaaaaaaaaaaaaab`  | `00000000-0000-0000-0000-000000000000` | 1                       | 1                         |
