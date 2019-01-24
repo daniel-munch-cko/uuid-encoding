@@ -60,31 +60,33 @@ namespace uuid_encoding.Tests
         }
 
         /**
+        * UPDATE: With the intruduction of the remaining-bits validation, 
+        * the 17s is no longer a valid input as it has remaining 5 bits after the decoding.
+        * Therefre the ambiguity with the 16 7s input.
+        * ============================================================================
         * Base32String implementation is not the same as that of RFC 4648, it drops
         * the last incomplete chunk and thus accepts encoded strings that should have
         * been rejected; also this results in multiple encoded strings being decoded
         * to the same byte array.
         * This test will catch any changes made regarding this behavior.
         */
-        [Test]
-        public void TestAmbiguousDecoding() 
-        {
-            byte[] b16 = Base32.Decode("7777777777777777"); // 16 7s.
-            byte[] b17 = Base32.Decode("77777777777777777"); // 17 7s.
-            Assert.That(b16, Is.EqualTo(b17));
-        }
+        //[Test]
+        //public void TestAmbiguousDecoding() 
+        //{
+        //    byte[] b16 = Base32.Decode("7777777777777777"); // 16 7s.
+        //    byte[] b17 = Base32.Decode("77777777777777777"); // 17 7s.
+        //    Assert.That(b16, Is.EqualTo(b17));
+        //}
 
         [Test]
         public void TestSmallDecodingsAndFailures() 
         {
             // decoded, but not enough to return any bytes.
-            Assert.That(0, Is.EqualTo(Base32.Decode("A").Length));
             Assert.That(0, Is.EqualTo(Base32.Decode("").Length));
             Assert.That(0, Is.EqualTo(Base32.Decode(" ").Length));
 
             // decoded successfully and returned 1 byte.
             Assert.That(1, Is.EqualTo(Base32.Decode("AA").Length));
-            Assert.That(1, Is.EqualTo(Base32.Decode("AAA").Length));
 
             // decoded successfully and returned 2 bytes.
             Assert.That(2, Is.EqualTo(Base32.Decode("AAAA").Length));
@@ -107,6 +109,16 @@ namespace uuid_encoding.Tests
             Assert.Throws<Base32.DecodingException>(() => Base32.Decode("AAA;"));
             Assert.Throws<Base32.DecodingException>(() => Base32.Decode("AAA."));
             Assert.Throws<Base32.DecodingException>(() => Base32.Decode("AAA!"));
+
+            // decoding that results remainging bits amount at least the shift size should fail
+            Assert.Throws<Base32.DecodingException>(() => Base32.Decode("A"));
+            Assert.Throws<Base32.DecodingException>(() => Base32.Decode("AAA"));
+            Assert.Throws<Base32.DecodingException>(() => Base32.Decode("77777777777777777"));
+
+            // decoding that results emaining non-zero buffer
+            Assert.Throws<Base32.DecodingException>(() => Base32.Decode("aaaaaaaaaaaaaaaaaaaaaaaaab"));
+            Assert.Throws<Base32.DecodingException>(() => Base32.Decode("aaaaaaaaaaaaaaaaaaaaaaaaac"));
+            Assert.Throws<Base32.DecodingException>(() => Base32.Decode("aaaaaaaaaaaaaaaaaaaaaaaaad"));
 
             // this just documents that a null string causes a nullpointerexception.
             Assert.Throws<System.NullReferenceException>(() => Base32.Decode(null));

@@ -66,3 +66,22 @@ wbhwfhpnykj77weppsb22upiuddqaf
 ## Conclusion and recommondation
 
 As a compromise between length, readability and case-insensitivity (base64 isn't) I'd go for base32 with the standard RFC4648 alphabet.
+
+## Base32 - Properties of Decode and Encode Functions
+
+The method `Encode` is an injective function, that is each byte array results in a unique encoded string. However, it is not a surjective function. In other words, not every string (in the defined alphabet) has a corresponding byte array whose encoding would result this string.
+On the other hand, in the initial implementation, the function `Decode` is defined for any string in the defined alphabet. 
+In the case of the above mentioned strings, this was made possible by ignoring bits that would remain after the decoding and returning basically a byte array that would result a completely different string at encoding. As a result `Decode` is not an injectve function, in other words: multiple strings can result in the same byte array (rows 1-5): 
+
+### Example:
+
+|   | Input string                  | Guid resulting from the Decoding       | Remaining Bits (amount) | Remaining Buffer (binary) | 
+|:-:|:-----------------------------:|:--------------------------------------:|:-----------------------:|:-------------------------:|
+| 1 | `aaaaaaaaaaaaaaaaaaaaaaaaaa`  | `00000000-0000-0000-0000-000000000000` | 0                       | 0                         |
+| 2 | `aaaaaaaaaaaaaaaaaaaaaaaaab`  | `00000000-0000-0000-0000-000000000000` | 1                       | 1                         |
+| 3 | `aaaaaaaaaaaaaaaaaaaaaaaaac`  | `00000000-0000-0000-0000-000000000000` | 2                       | 10                        |
+| 4 | `aaaaaaaaaaaaaaaaaaaaaaaaad`  | `00000000-0000-0000-0000-000000000000` | 3                       | 11                        |
+| 5 | `aaaaaaaaaaaaaaaaaaaaaaaaaaa` | `00000000-0000-0000-0000-000000000000` | 7                       | 0                         |
+| 6 | `aaaaaaaaaaaaaaaaaaaaaaaaae`  | `00000000-0000-0000-0000-000000000001` | 0                       | 0                         | 
+
+Since we wish the functions `Encoode` and `Decode` to be the exact inverse functions of each other, we shall limit the domain of the `Decode` method - by ruling out such string as invalid input (rows 2-5).
